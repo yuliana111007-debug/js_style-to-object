@@ -6,7 +6,26 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+  const getPair = sourceString.split(';');
+  const getValue = getPair.map((s) => s.trim()).filter(Boolean);
+
+  getValue.forEach((pair) => {
+    const index = pair.indexOf(':');
+
+    if (index === -1) {
+      return;
+    }
+
+    const property = pair.slice(0, index).trim();
+    const value = pair.slice(index + 1).trim();
+
+    if (property) {
+      result[property] = value;
+    }
+  });
+
+  return result;
 }
 
 module.exports = convertToObject;
