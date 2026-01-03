@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const toObject = {};
+  const cssProperties = {};
   const getPair = sourceString.split(';');
   const getValue = getPair.map((s) => s.trim()).filter(Boolean);
 
@@ -21,11 +21,11 @@ function convertToObject(sourceString) {
     const value = pair.slice(index + 1).trim();
 
     if (property) {
-      toObject[property] = value;
+      cssProperties[property] = value;
     }
   });
 
-  return toObject;
+  return cssProperties;
 }
 
 module.exports = convertToObject;
